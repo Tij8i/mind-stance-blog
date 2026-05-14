@@ -1,0 +1,71 @@
+baseURL = "https://mind-stance.com/practice-of-life/"
+locale = "en-us"
+title = "Practice of Life"
+theme = "PaperMod"
+enableRobotsTXT = true
+enableEmoji = true
+hasCJKLanguage = false
+
+canonifyURLs = false
+relativeURLs = false
+
+[pagination]
+  pagerSize = 20
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.tableOfContents]
+    endLevel = 4
+    ordered = false
+    startLevel = 2
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[params]
+  env = "production"
+  description = "Reflections on practice, growth, and how to show up."
+  author = "Alessio Tixi"
+  defaultTheme = "auto"
+  disableThemeToggle = false
+  ShowReadingTime = true
+  hideAuthor = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = false
+  ShowWordCount = false
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = true
+  disableSpecial1stPost = true
+  disableScrollToTop = false
+  comments = false
+  hidemeta = false
+  hideSummary = false
+  showtoc = false
+  tocopen = false
+
+  [params.homeInfoParams]
+    Title = "Practice of Life"
+    Content = """
+Practice is not reserved for monks or athletes or writers. We're all practicing something every day — even when we engage in the most mundane activities.
+
+Finding room to grow in our mind is the challenge, finding a path to growth is where it all starts.
+
+In these pages I offer my reflections on topics and activities that are meaningful to me and that help me walk my path every day. As an inspiration and a reminder of how important it is to keep searching and looking at the world with fresh eyes.
+
+Child-like, as we naturally do when we embark on a new adventure.
+"""
+
+  [params.assets]
+    disableHLJS = true
+    # Brand CSS lives at assets/css/extended/brand.css — PaperMod
+    # auto-bundles everything under css/extended/*.css.
+
+  [params.label]
+    text = "Practice of Life"
+
+  [[params.socialIcons]]
+    name = "rss"
+    url = "index.xml"

@@ -1,0 +1,15 @@
+# Hugo build artifacts
+/public/
+/resources/_gen/
+/.hugo_build.lock
+
+# OS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Backups
+*.bak
+*~

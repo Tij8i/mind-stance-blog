@@ -1,0 +1,258 @@
+/* Mind Stance brand harmonization for the Practice of Life blog.
+ * Palette pulled from mind-stance.com (2026-05-14):
+ *   #000000 primary text, #ffffff bg, #e0dad3 warm beige, #01200f forest green.
+ * Fonts: Cormorant Garamond (display) + Roboto (body).
+ *
+ * Dark mode is scoped via PaperMod's [data-theme="dark"] AND the
+ * prefers-color-scheme media query (for [data-theme="auto"] users) so
+ * the brand vars apply either way.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  --ms-black: #000000;
+  --ms-white: #ffffff;
+  --ms-beige: #e0dad3;
+  --ms-beige-soft: #f3efe9;
+  --ms-green: #01200f;
+  --ms-green-soft: #1a3d2a;
+  --ms-green-light: #b8d8b8;
+
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body: 'Roboto', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+/* ============================================================
+ * LIGHT MODE — default + explicit data-theme="light"
+ * ============================================================ */
+:root,
+:root[data-theme="light"] {
+  --theme: var(--ms-white);
+  --entry: var(--ms-beige-soft);
+  --primary: var(--ms-black);
+  --secondary: #5a5a5a;
+  --tertiary: var(--ms-beige);
+  --content: #1c1c1c;
+  --code-block-bg: var(--ms-beige-soft);
+  --code-bg: var(--ms-beige-soft);
+  --border: var(--ms-beige);
+  --link-color: var(--ms-green);
+  --link-decoration: rgba(1, 32, 15, 0.25);
+}
+
+/* ============================================================
+ * DARK MODE — data-theme="dark" (toggle) OR auto + OS dark
+ * ============================================================ */
+:root[data-theme="dark"] {
+  --theme: #0a1410;
+  --entry: #122019;
+  --primary: var(--ms-beige);
+  --secondary: #9ca99e;
+  --tertiary: var(--ms-green-soft);
+  --content: #d4ccc1;
+  --code-block-bg: #122019;
+  --code-bg: #122019;
+  --border: var(--ms-green-soft);
+  --link-color: var(--ms-green-light);
+  --link-decoration: rgba(184, 216, 184, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] {
+    --theme: #0a1410;
+    --entry: #122019;
+    --primary: var(--ms-beige);
+    --secondary: #9ca99e;
+    --tertiary: var(--ms-green-soft);
+    --content: #d4ccc1;
+    --code-block-bg: #122019;
+    --code-bg: #122019;
+    --border: var(--ms-green-soft);
+    --link-color: var(--ms-green-light);
+    --link-decoration: rgba(184, 216, 184, 0.3);
+  }
+}
+
+/* ============================================================
+ * TYPOGRAPHY
+ * ============================================================ */
+body,
+.post-content,
+.post-content p,
+.entry-content,
+.entry-content p,
+.post-meta,
+.entry-footer,
+.archive-month,
+.archive-year,
+.nav,
+.menu,
+.footer {
+  font-family: var(--font-body) !important;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6,
+.post-title,
+.entry-header h1,
+.entry-header h2,
+.first-entry .entry-header h2,
+.home-info-title,
+.home-info h1,
+.page-header h1,
+.archive-header h1,
+.entry-hint-parent .entry-hint,
+.main .archive-header h1 {
+  font-family: var(--font-display) !important;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.15;
+}
+
+.logo a,
+.site-title,
+.header .logo {
+  font-family: var(--font-display) !important;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.home-info .home-info-title { font-size: 2.6rem; }
+.home-info .home-info-content {
+  font-family: var(--font-body) !important;
+  color: var(--secondary);
+}
+
+/* ============================================================
+ * LINKS — uses the --link-color var which switches with mode
+ * ============================================================ */
+a,
+.post-content a {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-decoration-color: var(--link-decoration);
+  text-underline-offset: 3px;
+}
+a:hover,
+.post-content a:hover {
+  text-decoration-color: var(--link-color);
+}
+
+.post-content { font-size: 1.05rem; line-height: 1.7; }
+.post-content p { margin-bottom: 1.2em; }
+.post-content blockquote {
+  font-family: var(--font-display) !important;
+  font-style: italic;
+  font-size: 1.2rem;
+  border-left-color: var(--link-color);
+  padding-left: 1.2rem;
+}
+
+.entry-cover img,
+.post-cover img { border-radius: 4px; }
+
+/* ============================================================
+ * COMPACT POST LIST — uniform layout for image and no-image posts
+ *   Layout: [cover] | [title + date] | [excerpt fills right column]
+ *   No-image variant collapses the cover column.
+ * ============================================================ */
+
+.first-entry,
+.main > .first-entry {
+  min-height: auto !important;
+  padding: 1rem 0 !important;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+}
+
+.post-entry {
+  display: grid;
+  grid-template-columns: 180px minmax(180px, 30%) 1fr;
+  grid-template-areas:
+    "cover header content"
+    "cover footer  content";
+  gap: 0.4rem 1.25rem;
+  align-items: start;
+  padding: 1.25rem 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  box-shadow: none;
+  border-radius: 0;
+  min-height: auto;
+}
+.post-entry:hover {
+  background: transparent;
+  transform: none;
+  box-shadow: none;
+}
+
+.post-entry .entry-cover {
+  grid-area: cover;
+  margin: 0 !important;
+  width: 180px;
+  height: 110px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.post-entry .entry-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.post-entry .entry-header { grid-area: header; }
+.post-entry .entry-footer {
+  grid-area: footer;
+  font-size: 0.82rem;
+  color: var(--secondary);
+  margin: 0;
+}
+.post-entry .entry-content {
+  grid-area: content;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.95rem;
+  margin: 0;
+  color: var(--secondary);
+  line-height: 1.5;
+}
+
+.post-entry .entry-header h2 {
+  font-size: 1.35rem !important;
+  line-height: 1.2 !important;
+  margin: 0 0 0.2rem !important;
+}
+
+/* When no image is present, collapse the cover column */
+.post-entry:not(:has(.entry-cover)) {
+  grid-template-columns: minmax(180px, 30%) 1fr;
+  grid-template-areas:
+    "header content"
+    "footer content";
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 720px) {
+  .post-entry,
+  .post-entry:not(:has(.entry-cover)) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "cover"
+      "header"
+      "footer"
+      "content";
+    gap: 0.5rem;
+  }
+  .post-entry .entry-cover {
+    width: 100%;
+    height: 180px;
+  }
+  .post-entry .entry-header h2 { font-size: 1.2rem !important; }
+}
+
+.main .post-entry + .post-entry { margin-top: 0; }
